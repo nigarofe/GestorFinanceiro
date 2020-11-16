@@ -21,7 +21,7 @@
             android:layout_marginBottom="64dp"
             android:text="Novembro/2020"
             android:textSize="30sp"
-            android:id="@+id/tituloMain"/>
+            android:id="@+id/tituloMainTxt"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
