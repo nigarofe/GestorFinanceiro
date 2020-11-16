@@ -3,6 +3,7 @@ package com.ifmg.carteiramensal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button novoBtn;
     private Button proximoBtn;
     private Calendar cal;
+    private Calendar hoje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         novoBtn = (Button) findViewById(R.id.novoBtn);
         proximoBtn = (Button) findViewById(R.id.proximoBtn);
 
+        cadastrarEventos();
+
+        hoje = Calendar.getInstance();
         cal = Calendar.getInstance();
         atualizarMesAno();
     }
@@ -47,6 +52,32 @@ public class MainActivity extends AppCompatActivity {
         int ano = cal.get(Calendar.YEAR);
 
         tituloMainTxt.setText(nomeMes[mes] + "/" + ano);
+    }
+
+    private void atualizarMes(int quantidade){
+        cal.add(Calendar.MONTH, quantidade);
+        if (cal.after(hoje)){
+            atualizarMes(-quantidade);
+        } else {
+            // Atualizar no BD
+        }
+
+        atualizarMesAno();
+    }
+
+    private void cadastrarEventos(){
+        anteriorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atualizarMes(-1);
+            }
+        });
+        proximoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atualizarMes(1);
+            }
+        });
     }
 }
 
