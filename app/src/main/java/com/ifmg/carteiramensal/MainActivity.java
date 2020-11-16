@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.ifmg.carteiramensal.EventosBD;
 
 import java.util.Calendar;
 
@@ -76,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 atualizarMes(1);
+            }
+        });
+        novoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventosBD db = new EventosBD(MainActivity.this);
+                db.insereEvento("First", 42);
+
+                Toast.makeText(MainActivity.this, db.getDatabaseName(), Toast.LENGTH_LONG).show();
             }
         });
     }
