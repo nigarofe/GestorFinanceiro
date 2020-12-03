@@ -2,6 +2,7 @@ package com.ifmg.carteiramensal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -87,6 +88,24 @@ public class MainActivity extends AppCompatActivity {
                 db.insereEvento("First", 42);
 
                 Toast.makeText(MainActivity.this, db.getDatabaseName(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        entradaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent troca = new Intent(MainActivity.this, VizualizarEventos.class);
+                troca.putExtra("acao", 0);
+                startActivity(troca);
+            }
+        });
+
+        saidaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent troca = new Intent(MainActivity.this, VizualizarEventos.class);
+                troca.putExtra("acao", 1);
+                startActivity(troca);
             }
         });
     }
