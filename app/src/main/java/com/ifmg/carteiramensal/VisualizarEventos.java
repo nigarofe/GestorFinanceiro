@@ -40,7 +40,7 @@ public class VisualizarEventos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent troca = new Intent(VisualizarEventos.this, CadastroEdicaoEvento.class);
-                //operacao
+                troca.putExtra("operacao", operacao);
                 startActivity(troca);
             }
         });

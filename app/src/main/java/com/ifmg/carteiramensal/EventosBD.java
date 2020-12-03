@@ -1,8 +1,11 @@
 package com.ifmg.carteiramensal;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.Date;
 
 public class EventosBD extends SQLiteOpenHelper {
 
@@ -21,9 +24,15 @@ public class EventosBD extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public void insereEvento(String nome, int valor) {
+    public void insereEvento(Evento novoEvento) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
-            String sql = "INSERT INTO evento (nome, valor) VALUES(" + nome + "," + valor + ")";
+            ContentValues valores = new ContentValues();
+            valores.put("nome", novoEvento.getNome());
+            valores.put("valor", novoEvento.getValor());
+            valores.put("imagem", novoEvento.getCaminhoFoto());
+            valores.put("dataocorreu", novoEvento.getOcorreu().getTime());
+            valores.put("datacadastro", new Date().getTime());
+            valores.put("datavalida", novoEvento.getValida().getTime());
         } catch (SecurityException ex) {
             ex.printStackTrace();
         }

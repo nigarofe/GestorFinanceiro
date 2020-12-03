@@ -84,10 +84,9 @@ public class MainActivity extends AppCompatActivity {
         novoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventosBD db = new EventosBD(MainActivity.this);
-                db.insereEvento("First", 42);
-
-                Toast.makeText(MainActivity.this, db.getDatabaseName(), Toast.LENGTH_LONG).show();
+//                EventosBD db = new EventosBD(MainActivity.this);
+//                db.insereEvento("First", 42);
+//                Toast.makeText(MainActivity.this, db.getDatabaseName(), Toast.LENGTH_LONG).show();
             }
         });
 

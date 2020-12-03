@@ -13,10 +13,10 @@
         android:layout_marginHorizontal="15dp">
 
         <TextView
+            android:id="@+id/tituloTxt"
             android:layout_marginVertical="15sp"
             android:gravity="center"
             android:textSize="32sp"
-            android:id="@+id/tituloTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Título"/>
@@ -35,7 +35,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"/>
+                android:textSize="22sp"
+                android:id="@+id/nomeTxt"/>
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:textSize="22sp"/>
+                android:textSize="22sp"
+                android:id="@+id/valorTxt"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +69,8 @@
                 android:text="Data do evento:   "
                 android:textSize="22sp"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/dataTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01/01/1970"
@@ -80,17 +83,20 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/repeteCheckbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Evento repete?"
                 android:textSize="22sp"/>
 
             <Spinner
+                android:id="@+id/mesesSpinner"
                 android:layout_width="70dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/foto"
             android:layout_width="220dp"
             android:layout_height="180dp"
             android:background="@mipmap/foto"
@@ -98,6 +104,7 @@
             android:layout_marginVertical="15dp"/>
 
         <Button
+            android:id="@+id/fotoBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Foto"
@@ -110,6 +117,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/salvarBtn"
                 android:layout_marginHorizontal="15sp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -117,6 +125,7 @@
                 android:text="Salvar"/>
 
             <Button
+                android:id="@+id/cancelarBtn"
                 android:layout_marginHorizontal="15sp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
