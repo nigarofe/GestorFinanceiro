@@ -24,7 +24,7 @@ public class VisualizarEventos extends AppCompatActivity {
         setContentView(R.layout.activity_visualizar_eventos);
 
         tituloTxt = (TextView) findViewById(R.id.tituloTxt);
-        totalTxt = (TextView) findViewById(R.id.totalTxt);
+        totalTxt = (TextView) findViewById(R.id.valorTotalTxt);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
         novoBtn = (Button) findViewById(R.id.novoBtn);
         cancelarBtn = (Button) findViewById(R.id.cancelarBtn);
@@ -39,7 +39,7 @@ public class VisualizarEventos extends AppCompatActivity {
         novoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent troca = new Intent(VisualizarEventos.this, cadastroEdicaoEvento.class);
+                Intent troca = new Intent(VisualizarEventos.this, CadastroEdicaoEvento.class);
                 //operacao
                 startActivity(troca);
             }

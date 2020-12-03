@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         entradaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent troca = new Intent(MainActivity.this, VizualizarEventos.class);
+                Intent troca = new Intent(MainActivity.this, VisualizarEventos.class);
                 troca.putExtra("acao", 0);
                 startActivity(troca);
             }
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         saidaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent troca = new Intent(MainActivity.this, VizualizarEventos.class);
+                Intent troca = new Intent(MainActivity.this, VisualizarEventos.class);
                 troca.putExtra("acao", 1);
                 startActivity(troca);
             }
