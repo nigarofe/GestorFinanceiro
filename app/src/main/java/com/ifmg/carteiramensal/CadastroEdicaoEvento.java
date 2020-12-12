@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -63,6 +65,17 @@ public class CadastroEdicaoEvento extends AppCompatActivity {
         ajustaPorAcao();
 
         cadastraEventos();
+
+        configurarSpinner();
+    }
+
+    private void configurarSpinner(){
+        ArrayList<String> meses = new ArrayList<>();
+        for(int i = 1; i <= 24; i++){
+            meses.add(i + "");
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, meses);
+        mesesSpinner.setAdapter(adapter);
     }
 
     private void cadastraEventos() {
