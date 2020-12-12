@@ -24,7 +24,7 @@
                     android:text="[Nome do evento]"
                     android:layout_marginBottom="10sp"
                     android:textStyle="bold"
-                    android:id="@+id/nome"/>
+                    android:id="@+id/nomeItem"/>
 
             </LinearLayout>
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="0,00"
                 android:layout_marginRight="40sp"
-                android:id="@+id/valor"/>
+                android:id="@+id/valorItem"/>
 
             <TextView
                 android:textSize="20sp"
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00/00/0000"
-                android:id="@+id/data"/>
+                android:id="@+id/dataItem"/>
 
         </LinearLayout>
 
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:text="[sim/não]"
                 android:layout_marginRight="40sp"
-                android:id="@+id/foto"/>
+                android:id="@+id/fotoItem"/>
 
             <TextView
                 android:textSize="20sp"
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[Repetição]"
-                android:id="@+id/repete"/>
+                android:id="@+id/repeteItem"/>
 
         </LinearLayout>
 
