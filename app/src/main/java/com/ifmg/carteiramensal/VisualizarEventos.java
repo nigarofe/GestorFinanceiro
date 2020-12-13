@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class VisualizarEventos extends AppCompatActivity {
 
     private TextView tituloTxt;
@@ -17,6 +20,9 @@ public class VisualizarEventos extends AppCompatActivity {
     private Button cancelarBtn;
     private Button novoBtn;
     private int operacao = -1;
+
+    private ArrayList<Evento> eventos;
+    private ItemListaEventos adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,22 @@ public class VisualizarEventos extends AppCompatActivity {
         operacao = intencao.getIntExtra("acao", -1);
         ajustaOperacao();
         cadastrarEventos();
+
+        carregaEventosLista();
+    }
+
+    private void carregaEventosLista(){
+        eventos = new ArrayList<>();
+
+        // Busca no banco de dados
+        eventos.add(new Evento("Padaria", 10.50, new Date(), new Date(), new Date(), null));
+        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+
+        adapter = new ItemListaEventos(getApplicationContext(), eventos);
+        listaEventos.setAdapter(adapter);
     }
 
     private void cadastrarEventos(){
