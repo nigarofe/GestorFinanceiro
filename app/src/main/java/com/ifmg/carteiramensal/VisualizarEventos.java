@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.ifmg.carteiramensal.MainActivity.cal;
+
 public class VisualizarEventos extends AppCompatActivity {
 
     private TextView tituloTxt;
@@ -44,14 +46,18 @@ public class VisualizarEventos extends AppCompatActivity {
     }
 
     private void carregaEventosLista(){
-        eventos = new ArrayList<>();
+        //        Eventos teste
+        //        eventos = new ArrayList<>();
+        //        eventos.add(new Evento("Padaria", 10.50, new Date(), new Date(), new Date(), null));
+        //        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        //        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        //        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        //        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
 
         // Busca no banco de dados
-        eventos.add(new Evento("Padaria", 10.50, new Date(), new Date(), new Date(), null));
-        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
-        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
-        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
-        eventos.add(new Evento("Tráfico", 103240.12, new Date(), new Date(), new Date(), null));
+        EventosBD db = new EventosBD(this);
+        eventos = db.buscaEventos(operacao, MainActivity.cal);
+
 
         adapter = new ItemListaEventos(getApplicationContext(), eventos);
         listaEventos.setAdapter(adapter);
