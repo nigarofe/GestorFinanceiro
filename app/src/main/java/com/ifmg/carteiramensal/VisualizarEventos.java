@@ -58,9 +58,14 @@ public class VisualizarEventos extends AppCompatActivity {
         EventosBD db = new EventosBD(this);
         eventos = db.buscaEventos(operacao, MainActivity.cal);
 
-
         adapter = new ItemListaEventos(getApplicationContext(), eventos);
         listaEventos.setAdapter(adapter);
+
+        double total = 0.0;
+        for(int i = 0; i < eventos.size(); i++){
+            total += eventos.get(i).getValor();
+        }
+        totalTxt.setText(total + "");
     }
 
     private void cadastrarEventos(){

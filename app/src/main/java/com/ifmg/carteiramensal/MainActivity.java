@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.ifmg.carteiramensal.EventosBD;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         hoje = Calendar.getInstance();
         cal = Calendar.getInstance();
         atualizarMesAno();
+        atualizaValores();
     }
 
     private void atualizarMesAno() {
@@ -57,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         tituloMainTxt.setText(nomeMes[mes] + "/" + ano);
     }
 
-    private void atualizarMes(int quantidade){
+    private void atualizarMes(int quantidade) {
         cal.add(Calendar.MONTH, quantidade);
-        if (cal.after(hoje)){
+        if (cal.after(hoje)) {
             atualizarMes(-quantidade);
         } else {
             // Atualizar no BD
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         atualizarMesAno();
     }
 
-    private void cadastrarEventos(){
+    private void cadastrarEventos() {
         anteriorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +110,28 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(troca);
             }
         });
+    }
+
+    private void atualizaValores() {
+        EventosBD db = new EventosBD(MainActivity.this);
+        ArrayList<Evento> listaEventosSaida = db.buscaEventos(1, cal);
+        ArrayList<Evento> listaEventosEntrada = db.buscaEventos(0, cal);
+
+        double entradaTotal = 0.0;
+        double saidaTotal = 0.0;
+        double saldoTotal = 0.0;
+
+        for (int i = 0; i < listaEventosEntrada.size(); i++) {
+            entradaTotal += listaEventosEntrada.get(i).getValor();
+        }
+        for (int i = 0; i < listaEventosSaida.size(); i++) {
+            saidaTotal += listaEventosSaida.get(i).getValor();
+        }
+        saldoTotal = entradaTotal - saidaTotal;
+
+        entradaTxt.setText(Math.round(entradaTotal) + "");
+        saidaTxt.setText(Math.round(saidaTotal) + "");
+        saldoTxt.setText(Math.round(saldoTotal) + "");
     }
 }
 
