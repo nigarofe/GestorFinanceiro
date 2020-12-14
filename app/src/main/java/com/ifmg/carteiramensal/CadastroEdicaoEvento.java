@@ -76,6 +76,7 @@ public class CadastroEdicaoEvento extends AppCompatActivity {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, meses);
         mesesSpinner.setAdapter(adapter);
+        mesesSpinner.setEnabled(false);
     }
 
     private void cadastraEventos() {
@@ -100,6 +101,24 @@ public class CadastroEdicaoEvento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cadastrarNovoEvento();
+            }
+        });
+
+        repeteCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(repeteCheckBox.isChecked()){
+                    mesesSpinner.setEnabled(true);
+                } else {
+                    mesesSpinner.setEnabled(false);
+                }
+            }
+        });
+
+        cancelarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -134,17 +153,18 @@ public class CadastroEdicaoEvento extends AppCompatActivity {
             valor *= -1;
         }
 
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-        String dataEmString = dataTxt.getText().toString();
+//        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+//        String dataEmString = dataTxt.getText().toString();
 
-        try {
-            Date dia = formatador.parse(dataEmString);
+//        try {
+            Date dia = calTemp.getTime();
             Calendar dataLimite = Calendar.getInstance();
             dataLimite.setTime(calTemp.getTime());
             dataLimite.set(Calendar.DAY_OF_MONTH, dataLimite.getActualMaximum(Calendar.DAY_OF_MONTH));
 
             if (repeteCheckBox.isChecked()) {
-
+                String mesStr = (String) mesesSpinner.getSelectedItem();
+                dataLimite.add(Calendar.MONTH, Integer.parseInt(mesStr));
             }
 
             Evento novoEvento = new Evento(nome, valor, new Date(), dataLimite.getTime(), dia, null);
@@ -153,8 +173,8 @@ public class CadastroEdicaoEvento extends AppCompatActivity {
 
             Toast.makeText(CadastroEdicaoEvento.this, "Cadastro feito com sucesso", Toast.LENGTH_LONG).show();
             finish();
-        } catch (ParseException ex) {
-            System.err.println("ParseException lauwbf87awr82713r");
-        }
+//        } catch (ParseException ex) {
+//            System.err.println("ParseException lauwbf87awr82713r");
+//        }
     }
 }

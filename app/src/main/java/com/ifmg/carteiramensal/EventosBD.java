@@ -60,18 +60,26 @@ public class EventosBD extends SQLiteOpenHelper {
         Calendar primeiroDia = Calendar.getInstance();
         primeiroDia.setTime(data.getTime());
         primeiroDia.set(Calendar.DAY_OF_MONTH, 1);
+        primeiroDia.set(Calendar.HOUR, -12);
+        primeiroDia.set(Calendar.MINUTE, 59);
+        primeiroDia.set(Calendar.SECOND, 59);
+
 
         Calendar ultimoDia = Calendar.getInstance();
         ultimoDia.setTime(data.getTime());
         ultimoDia.set(Calendar.DAY_OF_MONTH, ultimoDia.getActualMaximum(Calendar.DAY_OF_MONTH));
+        ultimoDia.set(Calendar.HOUR, 23);
+        ultimoDia.set(Calendar.MINUTE, 59);
+        ultimoDia.set(Calendar.SECOND, 59);
+        ultimoDia.set(Calendar.MILLISECOND, 999);
 
 
 //        String sql = "SELECT * FROM evento";
 
-        String sql = "Select * from evento WHERE " +
-                "dataocorreu <= " + ultimoDia.getTime().getTime() + " " +
-                "AND dataocorreu >= " + primeiroDia.getTime().getTime() + " " +
-                "AND valor ";
+        String sql = "SELECT * FROM evento WHERE ((datavalida <= " + ultimoDia.getTime().getTime() +
+                " AND datavalida >= " + primeiroDia.getTime().getTime() + ") OR (dataocorreu <= " + ultimoDia.getTime().getTime() +
+                " AND datavalida >= " + primeiroDia.getTime().getTime() + "))" +
+                " AND valor ";
 
         if (operacao == 0) {
             // Entradas

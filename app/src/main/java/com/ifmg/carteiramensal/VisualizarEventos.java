@@ -65,7 +65,7 @@ public class VisualizarEventos extends AppCompatActivity {
         for(int i = 0; i < eventos.size(); i++){
             total += eventos.get(i).getValor();
         }
-        totalTxt.setText(total + "");
+        totalTxt.setText(String.format("%.2f", total));
     }
 
     private void cadastrarEventos(){
@@ -74,7 +74,14 @@ public class VisualizarEventos extends AppCompatActivity {
             public void onClick(View v) {
                 Intent troca = new Intent(VisualizarEventos.this, CadastroEdicaoEvento.class);
                 troca.putExtra("operacao", operacao);
-                startActivity(troca);
+                startActivityForResult(troca, operacao);
+            }
+        });
+
+        cancelarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -93,5 +100,11 @@ public class VisualizarEventos extends AppCompatActivity {
                 tituloTxt.setText("Erro na operação");
             }
         }
+    }
+
+
+    protected void onActivityResult(int codigoRequisicao, int codigoResultado, Intent data) {
+        super.onActivityResult(codigoRequisicao, codigoResultado, data);
+        carregaEventosLista();
     }
 }

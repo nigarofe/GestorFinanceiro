@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         atualizarMesAno();
+        atualizaValores();
     }
 
     private void cadastrarEventos() {
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent troca = new Intent(MainActivity.this, VisualizarEventos.class);
                 troca.putExtra("acao", 0);
-                startActivity(troca);
+                startActivityForResult(troca, 0);
             }
         });
 
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent troca = new Intent(MainActivity.this, VisualizarEventos.class);
                 troca.putExtra("acao", 1);
-                startActivity(troca);
+                startActivityForResult(troca, 0);
             }
         });
     }
@@ -129,9 +130,14 @@ public class MainActivity extends AppCompatActivity {
         }
         saldoTotal = entradaTotal - saidaTotal;
 
-        entradaTxt.setText(Math.round(entradaTotal) + "");
-        saidaTxt.setText(Math.round(saidaTotal) + "");
-        saldoTxt.setText(Math.round(saldoTotal) + "");
+        entradaTxt.setText(String.format("%.2f", entradaTotal));
+        saidaTxt.setText(String.format("%.2f", saidaTotal));
+        saldoTxt.setText(String.format("%.2f", saldoTotal));
+    }
+
+    protected void onActivityResult(int codigoRequisicao, int codigoResultado, Intent data) {
+        super.onActivityResult(codigoRequisicao, codigoResultado, data);
+        atualizaValores();
     }
 }
 
